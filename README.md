@@ -26,6 +26,7 @@ Each step begins from your  Working directory**: `/PATH/TO/pediatric-template`
 ```
 git clone git@data.neuro.polymtl.ca:datasets/philadelphia-pediatric
 cd philadelphia-pediatric
+git checkout edd688281916bec227c9198032adb333bc275a05
 git annex get .
 cd ..
 ```
