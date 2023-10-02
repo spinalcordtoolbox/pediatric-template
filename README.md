@@ -16,11 +16,8 @@ Same subjects kept for both templates (N = 18). Some notes below on why some sub
 
 
 ## Regenerating T1w and T2w Templates
-:'
 Step-by-step walk-through on how to generate T1w and T2w pediatric templates from philadelphia-pediatric dataset.
-All code below should be run in your command-line (bash) on CCDB.
-Each step begins from your  Working directory**: `/PATH/TO/pediatric-template`
-'
+All code below should be run in your command-line (bash) on CCDB. Each step begins from your **working directory**: `/PATH/TO/pediatric-template`.
 
 ### 1. Get data from git annex
 ```
