@@ -23,7 +23,8 @@ All code below should be run in your command-line (bash) on CCDB. Each step begi
 ```
 git clone git@data.neuro.polymtl.ca:datasets/philadelphia-pediatric
 cd philadelphia-pediatric
-git checkout edd688281916bec227c9198032adb333bc275a05
+git checkout -b nb/add-labels
+git checkout bfe5ccef153ed127f2cb721114639889b70bbd7d
 git annex get .
 cd ..
 ```
