@@ -1,0 +1,8 @@
+{
+	"path_data": "ABSOLUTE/PATH/TO/pediatric-template/philadelphia-pediatric-processing/",
+	"include_list": "sub-101 sub-102 sub-103 sub-104 sub-105 sub-109 sub-111 sub-112 sub-113 sub-114 sub-115 sub-116 sub-117 sub-118 sub-119 sub-120 sub-121 sub-122",
+	"data_type": "anat",
+	"contrast": "t2",
+	"suffix_image": "_rec-composed_T2w",
+	"last_disc": "18"
+}
