@@ -1,4 +1,4 @@
-# pediatric-template
+# Pediatric Template
 Repository for generating pediatric template
 
 ## Data
@@ -52,24 +52,29 @@ cd ..
 
 ### 3. T1w data preprocessing and normalization
 ```
-cd template
-cp ../configuration_T1w.json configuration.json
+1. cd template
+2. cp ../configuration_T1w.json configuration.json
 python preprocess_normalize.py configuration.json
 
 # Rename derivatives such that the T2w data normalization does not override the outputs of the T1w data normalization
-mv ../philadelphia-pediatric-processing/derivatives/sct_straighten_spinalcord ../philadelphia-pediatric-processing/derivatives/sct_straighten_spinalcord_T1w
-mv ../philadelphia-pediatric-processing/derivatives/template ../philadelphia-pediatric-processing/derivatives/template_T1w
+3. mv ../philadelphia-pediatric-processing/derivatives/sct_straighten_spinalcord ../philadelphia-pediatric-processing/derivatives/sct_straighten_spinalcord_T1w
+4. mv ../philadelphia-pediatric-processing/derivatives/template ../philadelphia-pediatric-processing/derivatives/template_T1w
 ```
 
 
 ### 4. T2w data preprocessing and normalization
-```
-cp ../configuration_T2w.json configuration.json
-python preprocess_normalize.py configuration.json
+
+Once the template space for using the `T1w` data, a new template space is **not** needed to be created using the `T2w` images. This is to ensure that both the templates are in the same template space. For this, follow the steps below:
+
+Comment out the `generate_initial_template_space` method in the preprocess_normalize.py script (ref: Comment out the `generate_initial_template_space` method in the preprocess_normalize.py script.
+
+``` 
+1. cp ../configuration_T2w.json configuration.json
+2. python preprocess_normalize.py configuration.json
 
 # Rename derivatives
-mv ../philadelphia-pediatric-processing/derivatives/sct_straighten_spinalcord ../philadelphia-pediatric-processing/derivatives/sct_straighten_spinalcord_T2w
-mv ../philadelphia-pediatric-processing/derivatives/template ../philadelphia-pediatric-processing/derivatives/template_T2w
+3. mv ../philadelphia-pediatric-processing/derivatives/sct_straighten_spinalcord ../philadelphia-pediatric-processing/derivatives/sct_straighten_spinalcord_T2w
+4. mv ../philadelphia-pediatric-processing/derivatives/template ../philadelphia-pediatric-processing/derivatives/template_T2w
 ```
 
 
