@@ -15,7 +15,7 @@ Same subjects kept for both templates (N = 18). Some notes below on why some sub
 > for `sub-103` and `sub-109` T1w images, the spinal cord masks were not great. I did not need to manually fix the SC mask labels for these two subjects because their centerline files were automatically generated and used by the [template pipeline](https://github.com/neuropoly/template).
 
 
-## Regenerating T1w and T2w Templates
+## Generating T1w and T2w Templates
 Step-by-step walk-through on how to generate T1w and T2w pediatric templates from philadelphia-pediatric dataset.
 All code below should be run in your command-line (bash) on CCDB. Each step begins from your **working directory**: `/PATH/TO/pediatric-template`.
 
