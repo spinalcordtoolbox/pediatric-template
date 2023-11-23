@@ -66,7 +66,7 @@ python preprocess_normalize.py configuration.json
 
 Once the template space for using the `T1w` data, a new template space is **not** needed to be created using the `T2w` images. This is to ensure that both the templates are in the same template space. For this, follow the steps below:
 
-Comment out the `generate_initial_template_space` method in the preprocess_normalize.py script (ref: Comment out the `generate_initial_template_space` method in the preprocess_normalize.py script.
+Comment out the `generate_initial_template_space` method in the preprocess_normalize.py script.
 
 ``` 
 1. cp ../configuration_T2w.json configuration.json
