@@ -41,6 +41,8 @@ git checkout a7915f4ccfa075a5d31f4ea84bb9761d42710e9e
 cd ..
 ```
 
+> [!NOTE]  
+> The T1w template and the T2w template should be in the same template space.
 
 ### 3. T1w data preprocessing and normalization
 ```
