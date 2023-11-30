@@ -48,11 +48,11 @@ cd ..
 ```
 1. cd template
 2. cp ../configuration_T1w.json configuration.json
-python preprocess_normalize.py configuration.json
+3. python preprocess_normalize.py configuration.json
 
 # Rename derivatives such that the T2w data normalization does not override the outputs of the T1w data normalization
-3. mv ../philadelphia-pediatric-processing/derivatives/sct_straighten_spinalcord ../philadelphia-pediatric-processing/derivatives/sct_straighten_spinalcord_T1w
-4. mv ../philadelphia-pediatric-processing/derivatives/template ../philadelphia-pediatric-processing/derivatives/template_T1w
+4. mv ../philadelphia-pediatric-processing/derivatives/sct_straighten_spinalcord ../philadelphia-pediatric-processing/derivatives/sct_straighten_spinalcord_T1w
+5. mv ../philadelphia-pediatric-processing/derivatives/template ../philadelphia-pediatric-processing/derivatives/template_T1w
 ```
 
 
