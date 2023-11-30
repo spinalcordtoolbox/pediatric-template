@@ -60,15 +60,14 @@ python preprocess_normalize.py configuration.json
 
 Once the template space for using the `T1w` data, a new template space is **not** needed to be created using the `T2w` images. This is to ensure that both the templates are in the same template space. For this, follow the steps below:
 
-Comment out the `generate_initial_template_space` method in the preprocess_normalize.py script.
-
 ``` 
-1. cp ../configuration_T2w.json configuration.json
-2. python preprocess_normalize.py configuration.json
+1. Comment out the `generate_initial_template_space` method in the preprocess_normalize.py script
+2. cp ../configuration_T2w.json configuration.json
+3. python preprocess_normalize.py configuration.json
 
 # Rename derivatives
-3. mv ../philadelphia-pediatric-processing/derivatives/sct_straighten_spinalcord ../philadelphia-pediatric-processing/derivatives/sct_straighten_spinalcord_T2w
-4. mv ../philadelphia-pediatric-processing/derivatives/template ../philadelphia-pediatric-processing/derivatives/template_T2w
+4. mv ../philadelphia-pediatric-processing/derivatives/sct_straighten_spinalcord ../philadelphia-pediatric-processing/derivatives/sct_straighten_spinalcord_T2w
+5. mv ../philadelphia-pediatric-processing/derivatives/template ../philadelphia-pediatric-processing/derivatives/template_T2w
 ```
 
 
