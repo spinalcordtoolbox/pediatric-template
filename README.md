@@ -177,8 +177,19 @@ module load StdEnv/2020 gcc/9.3.0 minc-toolkit/1.9.18.1 python/3.8.10
 Upgrade pip and install [SCOOP](https://pypi.org/project/scoop/): 
 ```bash
 pip install --upgrade pip
-pip install scoop
+pip install --user scoop
 ```
+
+The following package versions were used to ensure compatibility with Python 3.8.0:
+```bash
+python -m pip install --user "aiosignal==1.3.1"
+python -m pip install --user "frozenlist==1.3.3"
+python -m pip install --user "virtualenv==20.16.3"
+python -m pip install --user "filelock==3.12.2"
+python -m pip install --user "click==8.1.7"
+python -m pip install --user "ray==2.3.1+computecanada"
+```
+
 ### 6.5 Download NIST MNI pipelines
 Clone the NIST MNI pipeline repository:
 ```bash
