@@ -10,11 +10,9 @@ Each age group is processed independently. For each group, T1w and T2w images ar
 
 ## 1. Data
 
-The data used to generate the templates are available on the NeuroPoly data server: 
+The data used to generate the templates are available on the NeuroPoly data server (lab members only): `data.neuro.polymtl.ca:datasets/philadelphia-pediatric`. 
 
-`data.neuro.polymtl.ca:datasets/philadelphia-pediatric`
-
-Instructions for downloading the dataset (lab members only): https://intranet.neuro.polymtl.ca/computing-resources/data/git-datasets.html#download
+Instructions for downloading the dataset: https://intranet.neuro.polymtl.ca/data/git-datasets.html 
 
 ## 2. Overview of the processing pipeline
 The pediatric template generation process consists of the following steps:
@@ -243,7 +241,7 @@ mkdir template_T2w_13-15
 mkdir template_T2w_16-17
 ```
 
-Next, transfer the straightened and normalized .mnc files generated during preprocessing (Steps 4 and 5) to the corresponding directories in your Alliance scratch directory.
+Next, transfer the straightened and normalized `.mnc` files generated during preprocessing (Steps 4 and 5) to the corresponding directories in your Alliance scratch directory.
 
 The normalized images and template masks are located in the `philadelphia-pediatric/derivatives/template_*/` directories. 
 
@@ -251,6 +249,16 @@ For each age group and imaging modality, copy the following files:
 - **Normalized MRI images:** All straightened and normalized subject images (`sub-*_rec-composed_T*w_straight_norm.mnc`).
 - **Template mask:** The corresponding template_mask.mnc generated during preprocessing.
 - **Subject list:** The corresponding subject.csv file containing the paths to the normalized .mnc images that will be used for template generation.
+
+> [!NOTE]
+> To copy the files to your scratch directory, we recommend using `scp` in your local computer terminal. For example, to copy the `.mnc` files for the T2w 10-12 age group:
+>```
+> scp /PATH/TO/philadelphia-pediatric/derivatives/template_T2w_10-12/sub-*_rec-composed_T2w_straight_norm.mnc USERNAME@CLUSTER.computecanada.ca:/PATH/TO/scratch/pediatric_templates/template_T2w_10-12/ 
+> ```
+> Replace:
+> - `/PATH/TO/philadelphia-pediatric/` with the location of the dataset on your local computer.
+> - `USERNAME` with your Alliance username.
+> - `/PATH/TO/scratch/` with the path to your scratch directory on the cluster.
 
 Each age group and imaging modality must have its own directory containing the appropriate images, template mask, and CSV file.
 
@@ -344,12 +352,53 @@ For example, `generate_template_T1w_10-12.sh` should contain:
 #SBATCH --time=48:00:00
 #SBATCH --mem-per-cpu=8000
 
+export VOLUME_CACHE_THRESHOLD=-1
+export OMP_NUM_THREADS=1
+
 python -m scoop -vvv generate_template_T1w_10-12.py
 ```
 
+> [!IMPORTANT]
+> **`VOLUME_CACHE_THRESHOLD=-1`** prevents this crash:
+>```
+>`volume_io error: copy_volume(): copying cached volumes not implemented.`
+>```
+> Setting the value to `-1` tells MINC to always load the whole image into memory. Because of this, each registration needs more memory, so make sure your job requests enough (`--mem` in SLURM).
+
+> [!NOTE]
+> **`OMP_NUM_THREADS=1`** keeps each registration to one core, so the total stays within what you requested from SLURM. This setting only affects speed. It is not needed to avoid the crash.
+
 Create equivalent scripts for the other five templates, updating the job name and Python script filename accordingly. 
 
-Your scratch diectory should now look like this : 
+Your scratch diectory should now look like this :
+```bash
+pediatric_templates/
+│
+├── nist_mni_pipelines/
+│
+├── template_T1w_10-12/
+│   ├── generate_template_T1w_10-12.py # python script to generate template
+│   ├── generate_template_T1w_10-12.sh # bash script to submit to Alliance HPC
+│   ├── sub-*_rec-composed_T1w_straight_norm.mnc # all participant files corresponding to this template
+│   ├── subject.csv  # csv file containing the paths to the .mnc fles
+│   └── template_mask.mnc # template mask corresponding to this template
+│
+├── template_T1w_13-15/
+│   └── ...
+│
+├── template_T1w_16-17/
+│   └── ...
+│
+├── template_T2w_10-12/
+│   └── ...
+│
+├── template_T2w_13-15/
+│   └── ...
+│
+└── template_T2w_16-17/
+│   └── ...
+```
+
 ```bash
 pediatric_templates/
 │
